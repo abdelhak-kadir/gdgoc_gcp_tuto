@@ -1,0 +1,32 @@
+# Mirrors .dockerignore — keeps Cloud Build uploads small
+.gcloudignore
+.git/
+.gitignore
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+venv/
+.venv/
+
+# Secrets
+.env
+.env.*
+
+# Editor / OS artifacts
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Docs
+README.md
+*.md
+.github/
+
+# Tests
+tests/
+.coverage
+htmlcov/
