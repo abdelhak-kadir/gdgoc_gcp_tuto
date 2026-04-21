@@ -100,7 +100,7 @@ gcloud services enable \
 
 ```bash
 # Clone the repo
-git clone https://github.com/abdelhak-kadir/gdgoc_gcp_tuto.git
+git clone https://github.com/YOUR_USERNAME/gcp-cloudrun-tutorial.git
 cd gcp-cloudrun-tutorial
 
 # Create a virtual environment
@@ -151,7 +151,7 @@ Visit [http://localhost:8080](http://localhost:8080) to verify the containerized
 
 ---
 
-## Step 4 — Push to Artifact Registry
+## Step 4 — Build & Push to Artifact Registry
 
 ### 4.1 Create a Docker repository
 
@@ -162,23 +162,26 @@ gcloud artifacts repositories create cloudrun-repo \
   --description="GDG Todo app images"
 ```
 
-### 4.2 Authenticate Docker with GCP
+### 4.2 Define the image path
 
 ```bash
-gcloud auth configure-docker europe-west1-docker.pkg.dev
-```
-
-### 4.3 Tag and push
-
-```bash
-# Define the full image path
 export IMAGE=europe-west1-docker.pkg.dev/YOUR_PROJECT_ID/cloudrun-repo/gdg-todo:v1
-
-docker build -t $IMAGE .
-docker push $IMAGE
 ```
 
-Verify:
+### 4.3 Build and push with Cloud Build
+
+Instead of running `docker build` + `docker push` locally (which can fail in Cloud Shell due to networking issues), use **Cloud Build** — it builds and pushes the image entirely on GCP's infrastructure:
+
+```bash
+gcloud builds submit --tag $IMAGE .
+```
+
+That's it — one command handles the build and the push. 
+
+> **Why not `docker push` directly?**  
+> In Cloud Shell, Docker connections to Artifact Registry can be refused due to session credential expiry. `gcloud builds submit` sends your source code to Cloud Build, which builds and pushes the image server-side, bypassing the issue entirely.
+
+### 4.4 Verify the image was pushed
 
 ```bash
 gcloud artifacts docker images list \
@@ -245,9 +248,10 @@ Make a code change, then:
 ```bash
 export IMAGE_V2=europe-west1-docker.pkg.dev/YOUR_PROJECT_ID/cloudrun-repo/gdg-todo:v2
 
-docker build -t $IMAGE_V2 .
-docker push $IMAGE_V2
+# Build and push via Cloud Build
+gcloud builds submit --tag $IMAGE_V2 .
 
+# Deploy the new image
 gcloud run deploy gdg-todo \
   --image $IMAGE_V2 \
   --region europe-west1
@@ -301,7 +305,7 @@ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
   --role="roles/artifactregistry.writer"
 ```
 
-###  Container failed to start
+### Container failed to start
 
 Cloud Run requires your app to listen on `$PORT` within 4 minutes.
 
@@ -348,5 +352,5 @@ gcloud services enable run.googleapis.com artifactregistry.googleapis.com
 <div align="center">
   <img src="https://img.shields.io/badge/GDG%20On%20Campus-Universiapolis-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="GDG On Campus Universiapolis" />
   <br/>
-  <sub>Made by GDG On Campus Universiapolis · Agadir</sub>
+  <sub>Made with  by GDG On Campus Universiapolis · Agadir</sub>
 </div>
