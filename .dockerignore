@@ -1,0 +1,38 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment files (never bake secrets into the image)
+.env
+.env.*
+
+# Development / editor artifacts
+.git/
+.gitignore
+.gcloudignore
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Docs & CI (not needed inside the container)
+README.md
+*.md
+.github/
+
+# Test artifacts
+tests/
+*.test.py
+coverage/
+.coverage
+htmlcov/
