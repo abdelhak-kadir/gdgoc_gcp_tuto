@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GDG Todo · GDG On Campus Universiapolis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="gdg-dots">
+        <span class="dot dot-blue"></span>
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <div class="header-text">
+        <h1>GDG Todo</h1>
+        <p>GDG On Campus Universiapolis · Agadir</p>
+      </div>
+    </header>
+
+    <!-- ── Add task ── -->
+    <div class="input-row">
+      <input
+        id="taskInput"
+        class="task-input"
+        type="text"
+        placeholder="Add a new task…"
+        maxlength="120"
+        autocomplete="off"
+      />
+      <select id="prioritySelect" class="priority-select">
+        <option value="high">🔴 High</option>
+        <option value="medium" selected>🟡 Medium</option>
+        <option value="low">🟢 Low</option>
+      </select>
+      <button id="addBtn" class="add-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M7 1v12M1 7h12" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Add
+      </button>
+    </div>
+
+    <!-- ── Filters ── -->
+    <div class="filters" id="filters" role="group" aria-label="Filter tasks">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="high">High</button>
+      <button class="filter-btn" data-filter="medium">Medium</button>
+      <button class="filter-btn" data-filter="low">Low</button>
+      <button class="filter-btn" data-filter="done">Done</button>
+    </div>
+
+    <!-- ── Stats ── -->
+    <div class="stats-row" id="statsRow" aria-live="polite"></div>
+
+    <!-- ── Task list ── -->
+    <ul class="tasks-list" id="tasksList" aria-label="Task list"></ul>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="gdg-mini-dots">
+          <span class="mini-dot" style="background:#4285F4"></span>
+          <span class="mini-dot" style="background:#EA4335"></span>
+          <span class="mini-dot" style="background:#FBBC05"></span>
+          <span class="mini-dot" style="background:#34A853"></span>
+        </div>
+        <span class="footer-text">GDG On Campus Universiapolis</span>
+      </div>
+      <button id="clearDone" class="clear-btn">Clear done</button>
+    </footer>
+
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
