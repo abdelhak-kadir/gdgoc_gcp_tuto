@@ -100,7 +100,7 @@ gcloud services enable \
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/gcp-cloudrun-tutorial.git
+git clone https://github.com/abdelhak-kadir/gdgoc_gcp_tuto.git
 cd gcp-cloudrun-tutorial
 
 # Create a virtual environment
