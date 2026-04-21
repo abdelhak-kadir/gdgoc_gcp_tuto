@@ -42,7 +42,6 @@ A complete beginner-friendly tutorial by **GDG On Campus Universiapolis · Agadi
 | Python | 3.9+ | [python.org](https://www.python.org/downloads/) |
 | Git | Any | [git-scm.com](https://git-scm.com/) |
 
-You also need a **Google Cloud account** with billing enabled (free tier works).
 
 ---
 
